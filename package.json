@@ -9,6 +9,10 @@
   },
   "author": "Bruno Ranschaert",
   "homepage" : "https://github.com/branscha/lib-base64",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:branscha/lib-base64.git"
+  },
   "license": "ISC",
   "devDependencies": {
     "babel-plugin-add-module-exports": "^0.2.1",
