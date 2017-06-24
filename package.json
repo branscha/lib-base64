@@ -1,6 +1,6 @@
 {
   "name": "@branscha/base64",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Base64 codec following RFC 3548 or RFC 4648.",
   "main": "dist/base64.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "prepublishOnly": "gulp dist"
   },
   "author": "Bruno Ranschaert",
-  "homepage" : "https://github.com/branscha/lib-base64",
+  "homepage": "https://github.com/branscha/lib-base64",
   "repository": {
     "type": "git",
     "url": "git@github.com:branscha/lib-base64.git"
