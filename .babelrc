@@ -1,0 +1,16 @@
+{
+  "presets": ["es2015"],
+  "plugins": [ [
+      "module-resolver", {
+        "root": ["./src"]
+      }
+    ]
+  ],
+  "env": {
+    "test": {},
+    "production": {
+      "presets": [["babili", {"mangle": false}]],
+      "plugins": ["transform-es2015-modules-umd", "add-module-exports"]
+    }
+  }
+}
