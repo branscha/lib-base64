@@ -7,7 +7,8 @@
     "test": "gulp jest",
     "prepublishOnly": "gulp dist"
   },
-  "author": "",
+  "author": "Bruno Ranschaert",
+  "homepage" : "https://github.com/branscha/lib-base64",
   "license": "ISC",
   "devDependencies": {
     "babel-plugin-add-module-exports": "^0.2.1",
