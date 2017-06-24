@@ -1,4 +1,4 @@
-# Base 64 Codec
+# Base 64 Codec [![Build Status](https://travis-ci.org/branscha/lib-base64.svg?branch=master)](https://travis-ci.org/branscha/lib-base64)
 ## Goal
 
 Standard 'base64' encoding for RFC 3548 or RFC 4648.
