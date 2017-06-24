@@ -10,3 +10,5 @@ Example using CommonJS semantics.
     var base64 = require('@branscha/base64');
     var encoded = base64.encode("Hello World");
     var decoded = base64.decode(encoded);
+
+The package contains an UMD module.
