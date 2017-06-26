@@ -1,9 +1,11 @@
 {
   "name": "@branscha/base64",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Base64 codec following RFC 3548 or RFC 4648.",
   "main": "dist/base64.js",
-  "keywords": ["base64"],
+  "keywords": [
+    "base64"
+  ],
   "scripts": {
     "test": "gulp jest",
     "prepublishOnly": "gulp dist"
