@@ -3,7 +3,8 @@
 
 Standard 'base64' encoding for RFC 3548 or RFC 4648.
 * No line splitting (in accordance with this standard).
-* https://en.wikipedia.org/wiki/Base64
+* https://en.wikipedia.org/wiki/Base64.
+* A JavaScript string is interpreted as a string of bytes, each character corresponds to a single byte.
 
 Example using CommonJS semantics.
 

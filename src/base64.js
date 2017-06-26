@@ -12,13 +12,13 @@
 const CODETABLE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
 
 /** @type {RegExp} */
-const VALIDINPUT = /[^A-Za-z0-9\+\/\=]/g;
+const INVALID_INPUT = /[^A-Za-z0-9\+\/\=]/g;
 
 /** @type {string} */
 const ERR010 = "Base64/010: Invalid characters in the input. Valid characters are A-Z, a-z, 0-9, '+', '/',and '=.";
 
 /**
- * Convert the byte string into a Base64 encoded string.
+ * Convert the byte string (raw string) into a Base64 encoded string.
  * @param input {String}
  * @returns {String}
  */
@@ -47,9 +47,9 @@ function encode(input) {
 
         // Inflate the contents of three input bytes with 8 data bits to
         // four output bytes, each output byte has room for 6 data bits.
-        enc1 = src1 >> 2;                               // s18 s17 s16 s15 s14 s13
-        enc2 = ((src1 & 0b11 ) << 4) | (src2 >> 4);     // s12 s11*s28 s27 s26 s25
-        enc3 = ((src2 & 0b1111 ) << 2) | (src3 >> 6);   // s24 s23 s22 s21*s38 s37
+        enc1 = src1 >>> 2;                               // s18 s17 s16 s15 s14 s13
+        enc2 = ((src1 & 0b11 ) << 4) | (src2 >>> 4);     // s12 s11*s28 s27 s26 s25
+        enc3 = ((src2 & 0b1111 ) << 2) | (src3 >>> 6);   // s24 s23 s22 s21*s38 s37
         enc4 = src3 & 0b111111;                         // s36 s35 s34 s33 s32 s31
 
         // Convert the output bytes to readable tokens.
@@ -63,7 +63,7 @@ function encode(input) {
     // Input remainder bytes, the length that makes the input not a multiple of 3.
     if (restLen) {
         src1 = input.charCodeAt(i++);
-        enc1 = src1 >> 2;
+        enc1 = src1 >>> 2;
         switch (restLen) {
             case 1:
                 enc2 = ((src1 & 0b11) << 4);
@@ -72,7 +72,7 @@ function encode(input) {
                 break;
             case 2:
                 src2 = input.charCodeAt(i++);
-                enc2 = ((src1 & 0b11) << 4) | (src2 >> 4);
+                enc2 = ((src1 & 0b11) << 4) | (src2 >>> 4);
                 enc3 = ((src2 & 0b1111) << 2);
                 // Add padding.
                 enc4 = 0b1000000;
@@ -89,13 +89,13 @@ function encode(input) {
 }
 
 /**
- * Decode a Base64 encoded string into the original bytes.
+ * Decode a Base64 encoded string into the original byte string (raw string).
  * An Error is thrown when the input contains tokens that are not in the Base64 character set.
  * @param input {String}
  * @returns {String}
  */
 function decode(input) {
-    if (VALIDINPUT.exec(input)) {
+    if (INVALID_INPUT.exec(input)) {
         throw new Error(ERR010);
     }
 
@@ -119,8 +119,8 @@ function decode(input) {
         enc4 = CODETABLE.indexOf(input.charAt(i++)); // s36 s35 s34 s33 s32 s31
 
         // Deflate the content from 4 bytes into 3 bytes.
-        src1 = (enc1 << 2) | (enc2 >> 4);
-        src2 = ((enc2 & 0b1111) << 4) | (enc3 >> 2);
+        src1 = (enc1 << 2) | (enc2 >>> 4);
+        src2 = ((enc2 & 0b1111) << 4) | (enc3 >>> 2);
         src3 = ((enc3 & 0b11) << 6) | enc4;
 
         output = output + String.fromCharCode(src1);
